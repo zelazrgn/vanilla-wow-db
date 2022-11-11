@@ -1,0 +1,62 @@
+body {
+  background-color: #222;
+  color: white;
+  font-family: sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none; /* no underline */
+}
+
+#app {
+  display: grid;
+  row-gap: 20px;
+}
+
+.itemDetailedContainer .item {
+  border: 1px solid white;
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.itemDetailedContainer .item > div {
+  white-space: nowrap;
+}
+
+.itemDetailedContainer .patches {
+  display: grid;
+  grid-auto-columns: min-content;
+  row-gap: 20px;
+}
+
+.quality2 {
+  color: #1EFF00;
+}
+
+.quality3 {
+  color: #0070dd;
+}
+
+.quality4 {
+  color: rgb(163, 53, 238)
+}
+
+.spell {
+  color: #1EFF00;
+}
+
+#searchResults {
+  cursor: pointer;
+  display: grid;
+  grid-row-gap: 2px;
+}
+
+#searchResults > a {
+  border-bottom: 1px solid #333;
+}
+
+#searchResults .patches {
+  font-size: 12px;
+  color: #999;
+}
