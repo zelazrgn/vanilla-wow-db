@@ -97,10 +97,22 @@ export default {
       }
       return `Class (${classId}, ${subclassId})`
     },
-    dmgToString(dmg, speed) {
+    dps(item) {
+      let totalDamage = 0;
+      if (item.dmg) {
+        for (let dmg of item.dmg) {
+          totalDamage += dmg[1] + dmg[2];
+        }
+      }
+      const dps = totalDamage / (item.speed * 2 / 1000);
+      return `${dps.toFixed(1)} damage per second`;
+    },
+    dmgToString(dmg) {
       if (dmg[0] === 0) {
-        const dps = (dmg[1] + dmg[2]) / (speed * 2 / 1000);
-        return `${dmg[1]} - ${dmg[2]} (${dps.toFixed(1)} damage per second)`;
+        return `${dmg[1]} - ${dmg[2]}`;
+      }
+      if (dmg[0] === 3) {
+        return `+ ${dmg[1]} - ${dmg[2]} Nature Damage`;
       }
       return dmg;
     },
@@ -114,7 +126,8 @@ export default {
           <div v-if="item.subclass" class="class">{{ classToString(item.class, item.subclass) }}</div>
           <div v-if="item.armor > 0" class="armor">{{ item.armor }} Armor</div>
           <div v-if="item.speed">Speed {{ item.speed / 1000 }}</div>
-          <div v-for="dmg in item.dmg">{{ dmgToString(dmg, item.speed) }}</div>
+          <div v-if="item.dmg">{{ dps(item) }}</div>
+          <div v-for="dmg in item.dmg">{{ dmgToString(dmg) }}</div>
           <div v-for="stat in item.stats">{{ statToString(stat) }}</div>
           <div class="spell" v-for="spell in item.spells">{{ spell }}</div>
           <div v-if="item.required_level">Requires Level {{item.required_level}}</div>
