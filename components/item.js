@@ -29,17 +29,20 @@ const typeIdToString = {
   21: 'Main Hand',
   22: 'Off Hand',
   23: 'Held In Off-Hand',
+  26: 'Ranged',
 }
 
 const classToString = {
   2: {
     1: 'Axe',
+    5: 'Mace',
     6: 'Polearm',
     7: 'Sword',
     8: 'Sword',
     10: 'Staff',
     13: 'Fist Weapon',
     15: 'Dagger',
+    19: 'Wand',
   },
   4: {
     1: "Cloth",
@@ -111,8 +114,13 @@ export default {
       if (dmg[0] === 0) {
         return `${dmg[1]} - ${dmg[2]}`;
       }
-      if (dmg[0] === 3) {
-        return `+ ${dmg[1]} - ${dmg[2]} Nature Damage`;
+      const damageTypes = {
+        2: 'Fire',
+        3: 'Nature',
+      }
+
+      if (damageTypes[dmg[0]]) {
+        return `${dmg[1]} - ${dmg[2]} ${damageTypes[dmg[0]]} Damage`;
       }
       return dmg;
     },
@@ -127,7 +135,7 @@ export default {
           <div v-if="item.armor > 0" class="armor">{{ item.armor }} Armor</div>
           <div v-if="item.speed">Speed {{ item.speed / 1000 }}</div>
           <div v-if="item.dmg">{{ dps(item) }}</div>
-          <div v-for="dmg in item.dmg">{{ dmgToString(dmg) }}</div>
+          <div v-for="(dmg, index) in item.dmg"><template v-if="index">+</template>{{ dmgToString(dmg)}}</div>
           <div v-for="stat in item.stats">{{ statToString(stat) }}</div>
           <div class="spell" v-for="spell in item.spells">{{ spell }}</div>
           <div v-if="item.required_level">Requires Level {{item.required_level}}</div>
