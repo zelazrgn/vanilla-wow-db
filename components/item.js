@@ -15,6 +15,7 @@ const statIdToName = {
 
 const typeIdToString = {
   1: 'Head',
+  2: 'Neck',
   3: "Shoulder",
   5: "Chest",
   6: 'Waist',
@@ -23,8 +24,10 @@ const typeIdToString = {
   9: 'Wrist',
   10: 'Hands',
   11: 'Finger',
+  12: 'Trinket',
   13: 'One-Hand',
   14: 'Off Hand',
+  16: 'Back',
   17: 'Two-hand',
   21: 'Main Hand',
   22: 'Off Hand',
@@ -35,6 +38,7 @@ const typeIdToString = {
 const classToString = {
   2: {
     1: 'Axe',
+    4: 'Mace',
     5: 'Mace',
     6: 'Polearm',
     7: 'Sword',
@@ -117,6 +121,7 @@ export default {
       const damageTypes = {
         2: 'Fire',
         3: 'Nature',
+        5: 'Shadow',
       }
 
       if (damageTypes[dmg[0]]) {
