@@ -15,14 +15,33 @@ a {
 }
 
 .itemDetailedContainer .item {
-  border: 1px solid white;
+  display: grid;
+  border: 1px solid hsl(0deg 0% 100% / 30%);
   border-radius: 2px;
   padding: 5px;
-  min-width: 300px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.itemDetailedContainer .item > div {
+  grid-column: 1/3;
+}
+
+.itemDetailedContainer .item > .left {
+  grid-column: 1;
+}
+
+.itemDetailedContainer .item > .right {
+  grid-column: 2;
+  text-align: right;
+}
+
+.itemDetailedContainer .item > .spell {
+  white-space: normal;
 }
 
 .itemDetailedContainer .item .name {
-  white-space: nowrap;
+  font-size: 16px;
 }
 
 .itemDetailedContainer .patches {

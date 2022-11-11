@@ -31,6 +31,7 @@ const typeIdToString = {
   16: 'Back',
   17: 'Two-hand',
   18: 'Bag',
+  20: 'Chest',
   21: 'Main Hand',
   22: 'Off Hand',
   23: 'Held In Off-Hand',
@@ -121,7 +122,7 @@ export default {
     },
     dmgToString(dmg) {
       if (dmg[0] === 0) {
-        return `${dmg[1]} - ${dmg[2]}`;
+        return `${dmg[1]} - ${dmg[2]} Damage`;
       }
       const damageTypes = {
         2: 'Fire',
@@ -140,12 +141,14 @@ export default {
       <div class="patches">
         <div class="item" v-for="item in items">
           <div :class="'quality'+item.quality" class="name">{{ item.name }}</div>
-          <div class="type">{{ typeToString(item.type) }}</div>
-          <div v-if="item.subclass" class="class">{{ classToString(item.class, item.subclass) }}</div>
+          <div class="type left">{{ typeToString(item.type) }}</div>
+          <div v-if="item.subclass" class="class right">{{ classToString(item.class, item.subclass) }}</div>
+        <template v-for="(dmg, index) in item.dmg">
+          <div class="left"><template v-if="index">+</template>{{ dmgToString(dmg)}}</div>
+          <div v-if="item.speed && index == 0" class="right">Speed {{(item.speed / 1000).toFixed(2)}}</div>
+        </template>
+          <div v-if="item.dmg">({{dps(item)}})</div>
           <div v-if="item.armor > 0" class="armor">{{ item.armor }} Armor</div>
-          <div v-if="item.speed">Speed {{ item.speed / 1000 }}</div>
-          <div v-if="item.dmg">{{ dps(item) }}</div>
-          <div v-for="(dmg, index) in item.dmg"><template v-if="index">+</template>{{ dmgToString(dmg)}}</div>
           <div v-for="stat in item.stats">{{ statToString(stat) }}</div>
           <div class="spell" v-for="spell in item.spells">{{ spell }}</div>
           <div v-if="item.required_level">Requires Level {{item.required_level}}</div>
