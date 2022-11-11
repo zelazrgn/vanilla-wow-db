@@ -1,4 +1,4 @@
-import itemDB from '../item-db.json' assert {type: 'json'};
+import itemDB from '../item-db.js';
 
 const statIdToName = {
   3: 'Agility',

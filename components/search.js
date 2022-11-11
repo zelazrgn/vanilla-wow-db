@@ -1,8 +1,11 @@
-import itemDB from '../item-db.json' assert {type: 'json'};
+import itemDB from '../item-db.js';
 
 let timeoutId = undefined;
 
 export default {
+  mounted() {
+    document.title = 'Vanilla WoW Item Database';
+  },
   data() {
     return {
       itemDB: itemDB,
