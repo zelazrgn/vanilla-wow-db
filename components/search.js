@@ -36,7 +36,7 @@ export default {
   },
   template: `
   <div>
-    <input type="search" spellcheck="false" v-model="searchString" placeholder="Search by name">
+    <input autofocus type="search" spellcheck="false" v-model="searchString" placeholder="Search by name">
   </div>
   <div id="searchResults">
     <a :href="'#/item/' + item.item.id" v-for="item of searchResults"><span :class="'quality'+item.item.quality">{{ item.item.name }}</span>  <span class="patches">({{ item.patches.join(', ')}})</span></a>

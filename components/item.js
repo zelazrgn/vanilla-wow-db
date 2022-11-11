@@ -27,8 +27,10 @@ const typeIdToString = {
   12: 'Trinket',
   13: 'One-Hand',
   14: 'Off Hand',
+  15: 'Ranged',
   16: 'Back',
   17: 'Two-hand',
+  18: 'Bag',
   21: 'Main Hand',
   22: 'Off Hand',
   23: 'Held In Off-Hand',
@@ -38,6 +40,8 @@ const typeIdToString = {
 const classToString = {
   2: {
     1: 'Axe',
+    2: 'Bow',
+    3: 'Gun',
     4: 'Mace',
     5: 'Mace',
     6: 'Polearm',
@@ -46,6 +50,7 @@ const classToString = {
     10: 'Staff',
     13: 'Fist Weapon',
     15: 'Dagger',
+    18: 'Crossbow',
     19: 'Wand',
   },
   4: {
